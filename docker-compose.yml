@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  fake_api:
+    image:
+        fake_api:latest
+    command: uvicorn api:app --reload --host 0.0.0.0 --port 8801
+    volumes:
+            - .:/home/myproj
+            - ~/.aws/credentials:/home/myproj/.aws/credentials
+            - ${PWD}/requirements.txt:/requirements.txt
+    ports:
+      - 8801:8801
+    environment:
+      - ENVIRONMENT=dev
